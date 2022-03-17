@@ -16,6 +16,7 @@
                             <th>Titolo</th>
                             <th>Contenuto</th>
                             <th>Slug</th>
+                            <th>Categoria</th>
                             <th class="text-center">Azioni</th>
                         </tr>
                     </tr>
