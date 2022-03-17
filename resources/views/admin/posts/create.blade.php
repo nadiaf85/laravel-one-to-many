@@ -23,6 +23,17 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <label>Categoria</label>
+                            <select class="form-control form-control-md" name="category_id">
+                                <option value="">--seleziona categoria--</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{$category->id}}">
+                                        {{$category->title}}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
                         <button type="submit" class="btn btn-success">Crea</button>
                         <a href="{{route("admin.posts.index")}}"><button type="button" class="btn btn-primary">Torna ai posts</button></a>
                     </form>
