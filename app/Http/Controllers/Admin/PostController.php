@@ -6,6 +6,7 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -13,7 +14,8 @@ class PostController extends Controller
     protected $validate = [
         'title'=>'required|max:150|string',
         'content'=>'required',
-        'category_id' => 'nullable|exists:categories,id'
+        'category_id'=>'nullable|exists:categories,id',
+        'image'=>'nullable|image|mimes:jpeg, bmp, png,jpg|max:2048'
     ];
 
     /**
@@ -50,6 +52,13 @@ class PostController extends Controller
         $request->validate($this->validate);
 
         $data_form = $request->all();
+
+        if(isset($data_form['image'])){
+            //salvo l'immagine che mi arriva dal client,nella mia cartella uploads
+            $img_path = Storage::put('uploads',$data_form['image']); 
+            //salvo il percorso sul post nel db
+            $data_form['image'] = $img_path;
+        }
 
         //creo lo slug inserendo un - al posto degli spazi
         $slug = Str::slug($data_form['title']);

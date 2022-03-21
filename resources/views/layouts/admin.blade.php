@@ -55,7 +55,7 @@
                                 Posts
                             </a>
                         </li>
-
+                    </ul>
                 </div>
             </nav>
 

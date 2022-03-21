@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="col-md-12">
                     <h3>Crea nuovo Post</h3>
-                    <form action="{{route('admin.posts.store')}}" method="post">
+                    <form action="{{route('admin.posts.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                 
                         <div class="form-group">
@@ -23,6 +23,8 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
+
+                        {{-- Categoria del post --}}
                         <div class="form-group">
                             <label>Categoria</label>
                             <select class="form-control form-control-md" name="category_id">
@@ -34,6 +36,13 @@
                                 @endforeach
                             </select>
                         </div>
+
+                        {{-- Immagine del post --}}
+                        <div class="form-group">
+                            <label for="image">Inserisci un immagine</label>
+                            <input type="file" name="image" class="form-control-file" id="image">
+                        </div>
+                        
                         <button type="submit" class="btn btn-success">Crea</button>
                         <a href="{{route("admin.posts.index")}}"><button type="button" class="btn btn-primary">Torna ai posts</button></a>
                     </form>

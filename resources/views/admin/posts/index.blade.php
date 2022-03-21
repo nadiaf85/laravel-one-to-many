@@ -12,12 +12,13 @@
                 <thead class="thead-dark">
                     <tr>
                         <tr>
-                            <th>ID</th>
-                            <th>Titolo</th>
-                            <th>Contenuto</th>
-                            <th>Slug</th>
-                            <th>Categoria</th>
-                            <th class="text-center">Azioni</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">Titolo</th>
+                            <th scope="col">Contenuto</th>
+                            <th scope="col">Slug</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col">Immagine</th>
+                            <th scope="col text-center">Azioni</th>
                         </tr>
                     </tr>
                 </thead>
@@ -29,6 +30,11 @@
                         <td>{{$post->content}}</td>
                         <td>{{$post->slug}}</td>
                         <td>{{$post->category? $post->category->title : '-'}}</td>
+                        <td> 
+                            @if (isset($post->category))
+                                <img style="width: 50px;" src="{{asset("storage/{$post->image}")}}" alt="{{$post->title}}">
+                            @endif
+                        </td>
                         <td><a href="{{route('admin.posts.show',$post->id)}}">
                             <button type="button" class="btn btn-primary p-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
@@ -53,7 +59,7 @@
                                     </svg>
                                   </button>
                             </form>
-                            </a></td>
+                        </td>
                     </tr>
                 </tbody>
                 @endforeach
